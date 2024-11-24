@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+
+:root {
+    --whiteColor:#ffffff;
+    --grayColor: #000;
+    --lightGrayColor:#acacac;
+    --blackColor:#000000;
+    --purpleColor: #B57EDC;
+    --lightPurple: rgba(222, 187, 233, 0.20);
+    --greenColor: #1EAF5A;
+    --redColor: #FF004E;
+    --orangeColor:#F09E61;
+    
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+// * {
+//     border: 1px solid red !important;
+// }
+p, h1, h2, h3, h4, h5, h6, small {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Changa", sans-serif;
+    font-optical-sizing: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.swiper-pagination-bullet {
+    width:  78px !important;
+    height: 7px !important;
+    border-radius: 0 !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.swiper-pagination-bullet .swiper-pagination-bullet-active {
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+.swiper-pagination {
+    bottom: 15px !important;
+}
+.error {
+    color: var(--redColor);
+    text-align: center;
+    font-size: 0.9rem;
+}
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 70vh;
+    img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+       
+    }
+   
+    h4 {
+        text-align: center;
+        font-size: 2rem;
+        color: var(--purpleColor);
+    }
+    p {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666D80;
+    }
+}

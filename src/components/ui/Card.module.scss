@@ -1,0 +1,179 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid #E0E2E6;
+    position: relative;
+  
+    .content {
+        display: flex;
+        gap: 1rem;
+        p {
+            font-size: 1rem;
+            color: #666D80;
+        }
+        .left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .tags {
+                display: flex;
+                gap: 0.5rem;
+                .tag {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    flex-wrap: wrap;
+                   
+                    span {
+                        width: 30px;
+                        height: 30px;
+                        
+                    }
+                }
+            }
+            h3 {
+                font-size: 1rem;
+                font-weight: bold;
+                color: var(--purpleColor);
+                span {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+    img {
+        border-radius: 15px;
+        max-width: 180px;
+        width: 100%;
+        min-height: 300px;
+        object-fit: cover;
+    }
+    .actions {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        margin-top: 1rem;
+        border-top: 1px solid #E0E2E6;
+        .count {
+            display: flex;
+            align-items: center;
+            padding:0.5rem 1rem;
+            gap: 2rem;
+            border: 1px solid #CDD0D4;
+            border-radius: 5px;
+            button {
+                all: unset;
+                cursor: pointer;
+                color: var(--purpleColor);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            p {
+                font-size: 1.5rem;
+            }
+        }
+        .addtocart {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem;
+            gap: 1rem;
+            border: 1px solid #CDD0D4;
+            background-color: var(--whiteColor);
+            border-radius: 5px;
+
+        }
+    }
+    .favBtn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+        gap: 1rem;
+        border: 1px solid #CDD0D4;
+        background-color: var(--whiteColor);
+        border-radius: 5px;
+        margin-top: -1rem;
+        svg {
+            font-size: 1.2rem;
+        }
+    }
+  
+   
+}
+
+@media screen and (max-width:768px) {
+    .card {
+               
+        .content {
+          
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+               
+                h3 {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        img {
+            max-width: 40%;
+            width: 100%;
+            min-height: auto;
+        }
+        .actions {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            margin-top: 1rem;
+            border-top: 1px solid #E0E2E6;
+            .count {
+                display: flex;
+                align-items: center;
+                padding:0.5rem 1rem;
+                gap: 2rem;
+                border: 1px solid #CDD0D4;
+                border-radius: 5px;
+                button {
+                    all: unset;
+                    cursor: pointer;
+                    color: var(--purpleColor);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                p {
+                    font-size: 1.5rem;
+                }
+            }
+            .addtocart {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding: 1rem;
+                gap: 1rem;
+                border: 1px solid #CDD0D4;
+                background-color: var(--whiteColor);
+                border-radius: 5px;
+
+            }
+        }
+      
+       
+    }
+}

@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    position: relative;
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin:0 auto;
+
+        }
+         .backBtn {
+            all: unset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 25px;
+            background-color: #f8f8f8;
+            border: 1px solid #e0e2e6;
+            transition: all 250ms ease-in-out;
+            &:hover {
+                background-color: #fff;
+            }
+        }
+       
+    }
+    .address {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: #f8f8f8;
+        border: 1px solid #e0e2e6;
+        p {
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+    .addressForm {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: #f8f8f8;
+        border: 1px solid #e0e2e6;
+        p {
+            font-weight: bold;
+        }
+        .row {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width:64rem) {
+    .container {
+        padding-bottom: 9rem;
+        .header {
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
