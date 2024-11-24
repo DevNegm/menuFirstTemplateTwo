@@ -3,8 +3,7 @@
     .pages {
         display: flex;
         flex-direction: column;
-        margin-left: 35rem;
-        width: 100%;
+        width: calc(100% - 35rem);
     }
 }
 
