@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cardImage from '../../assets/card.png';
 import classes from './Card.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { FaCircleCheck, FaMinus, FaPlus } from 'react-icons/fa6';
+import { BsCart3 } from 'react-icons/bs';
 
 
-const Card = ({ item,handleModal }) => {
-    const navigate = useNavigate();
+const Card = ({ item,handleModal,handleAddToCart }) => {
+    const [count,setCount] = useState(1);
+    const handleIncrement = () => setCount((prevCount) => prevCount + 1);
+    const handleDecrement = () => setCount((prevCount) => Math.max(prevCount - 1, 1));
+    const [cartAdded, setCartAdded] = useState(false)
 
+    const handleCart = (item) => {
+        setCartAdded(true)
+        setCount(1)
+        handleAddToCart({
+            id:item.id,
+            name:item.name,
+            description:item.description,
+            variants:item.variants,
+            
+            price:item.price,
+            count:count,
+            image:item.image
+        })
+    }
+
+    useEffect(() => {
+        if(cartAdded) {
+          setTimeout(() => {
+            setCartAdded(false)
+          }, 2000)
+        }
+      }, [cartAdded])
     return (
         <div className={classes.card} onClick={() => handleModal(item)}>
          
@@ -14,10 +41,8 @@ const Card = ({ item,handleModal }) => {
                 <img src={item?.image || cardImage} alt="card" />
                 <div className={classes.left}>
                     <div>
+                    <div style={{display:'flex',gap:'1rem',alignItems:'center'}}>
                         <h4>{item?.name}</h4>
-                        <p>{item?.description && item?.description.slice(0, 150)} {item?.description?.length > 150 && '...'}</p>
-                    </div>
-                    <div>
                         <div className={classes.tags}>
                             {item?.types && item?.types?.map((item, i) => (
                                 <div key={i} className={classes.tag}>
@@ -25,16 +50,29 @@ const Card = ({ item,handleModal }) => {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                      
+                        <p>{item?.description && item?.description.slice(0, 150)} {item?.description?.length > 150 && '...'}</p>
+                    </div>
+                    <div>
+                     
                         <h3> السعر <span>{item?.price}</span> ₪</h3>
                     </div>
                 </div>
             </div>
             <div className={classes.actions} onClick={(e) => e.stopPropagation()}>
+                <div className={classes.count}>
+                    <button onClick={(e) => { e.stopPropagation(); handleIncrement(); }}><FaPlus /></button>
+                    <p>{count}</p>
+                    <button onClick={(e) => { e.stopPropagation(); handleDecrement(); }}><FaMinus /></button>
+                </div>
                 <button 
                     className={classes.addtocart} 
-                    onClick={(e) => { e.stopPropagation(); navigate('/') }}
+                    onClick={(e) => { e.stopPropagation(); handleCart(item) }}
+                        disabled={cartAdded}
                     >
-                   اطلب الان
+                            {cartAdded ? 'تمت الإضافة الي السلة' : 'أضف إلى السلة'}
+                            {cartAdded ? <FaCircleCheck/>  : <BsCart3 />}
                 </button>
             </div>
            

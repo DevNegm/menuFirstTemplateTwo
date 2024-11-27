@@ -12,10 +12,10 @@ const MainLayout = () => {
 }, [location]); 
   return (
     <main className={classes.main}>
+        <SideBar/>
         <div className={classes.pages}>
         <Outlet/>
         </div>
-        <SideBar/>
 
     </main>
   )

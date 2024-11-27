@@ -43,26 +43,8 @@ const SideBar = () => {
         </div>
       }
       <div className={classes.language}>
-        <FormControl sx={{minWidth:100}}>
-            <Select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              inputProps={{ 'aria-label': 'Without label' }}
-              size='small'
-              className='select'
-              sx={{
-                color: '#fff',
-                borderRadius: 15,
-                '.MuiSelect-icon': { color: '#fff' },
-                '& .MuiOutlinedInput-notchedOutline': { borderColor: '#ffffff6e' },
-                '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: '#fff' },
-              }}
-            >
-            
-              <MenuItem value={'AR'}>العربية</MenuItem>
-              <MenuItem value={'HE'}>עברית</MenuItem>
-            </Select>
-          </FormControl>
+          <button>العربية</button>
+          <button>עברית</button>
         </div>
         <div className={classes.social}>
             <Link to="/"><FaFacebookF /></Link>

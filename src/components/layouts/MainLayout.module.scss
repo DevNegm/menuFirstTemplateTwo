@@ -1,9 +1,11 @@
 .main {
     display: flex;
+    
     .pages {
         display: flex;
         flex-direction: column;
         width: calc(100% - 35rem);
+        margin-right: auto;
     }
 }
 
@@ -15,7 +17,6 @@
         .pages {
             display: flex;
             flex-direction: column;
-            margin-left: 0;
             width: 100%;
         }
     }

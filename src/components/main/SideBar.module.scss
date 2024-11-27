@@ -4,7 +4,7 @@
     gap: 1rem;
     padding: 2rem;
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
     min-height: 100vh;
     width: 35rem;
@@ -12,6 +12,7 @@
     background-image: url('../../assets/sidebar.png');
     color: var(--whiteColor);
     overflow-y: auto;
+    z-index: 1000;
     .sideHeader {
         display: flex;
         flex-direction: column;
@@ -25,6 +26,19 @@
         gap: 0.5rem;
         margin: 2rem 0;
         cursor: pointer;
+        button {
+            all: unset;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 5px 10px;
+            border: 1px solid #ffffff6e;
+            border-radius: 25px;
+            color: #fff;
+            width: fit-content;
+           
+        }
         p {
             font-size: 1.2rem;
         }
@@ -137,7 +151,7 @@
     .modal {
         position: fixed;
         top: 0;
-        right: 0;
+        left: 0;
         width: calc(100% - 35rem);
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
