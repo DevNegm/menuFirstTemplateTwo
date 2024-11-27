@@ -531,28 +531,7 @@
                 display: flex;
                 overflow-x: auto;
                 padding-bottom: 1rem;
-                .item {
-                    min-width: max-content;
-                    img {
-                        max-width: 100%;
-                    }
-                    p {
-                        padding: 0.5rem;
-                        font-size: 1rem;
-                    }
-                }
-                .activeItem {
-                    min-width: max-content;
-
-                    img {
-                        max-width: 100%;
-                    }
-                    p {
-                        padding: 0.5rem;
-
-                        font-size: 1rem;
-                    }
-                }
+               
             }
             
         }
