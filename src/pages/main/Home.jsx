@@ -549,36 +549,19 @@ const Home = () => {
       <div className={classes.sectionOne}>
         <div className={classes.sectionHeader}>
           <h3>الاصناف</h3>
-          {size === 8 ? (
-            <button onClick={() => setSize(0)}>عرض الكل</button>
-          ) : size > 8 && (
-              <button onClick={() => setSize(8)}>عرض اقل</button>
-          )}
+        
         </div>
         <div className={classes.items}>
-            {size === 0 ? (
-                categories?.map((item, i) => (
+           {categories?.map((item, i) => (
                     <div 
                         onClick={() => handleScroll(item?.id)} 
-                        key={item?.id} 
+                        key={item?.id}  
                         className={active === item?.id ? classes.activeItem : classes.item}
                     >
                         <img src={item?.image || exitem} alt={i + 1} />
                         <p>{item?.name}</p>
                     </div>
-                ))
-            ) : (
-                categories?.slice(0, 8)?.map((item, i) => (
-                    <div 
-                        onClick={() => handleScroll(item?.id)} 
-                        key={item?.id} 
-                        className={active === item?.id ? classes.activeItem : classes.item}
-                    >
-                        <img src={item?.image || exitem} alt={i + 1} />
-                        <p>{item?.name}</p>
-                    </div>
-                ))
-            )}
+                ))}
         </div>
       </div>
           {showModal && (

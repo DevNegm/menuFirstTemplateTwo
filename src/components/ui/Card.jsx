@@ -52,7 +52,7 @@ const Card = ({ item,handleModal,handleAddToCart }) => {
                         </div>
                     </div>
                       
-                        <p>{item?.description && item?.description.slice(0, 150)} {item?.description?.length > 150 && '...'}</p>
+                        <p>{item?.description && item?.description.slice(0, 100)} {item?.description?.length > 100 && '...'}</p>
                     </div>
                     <div>
                      
@@ -71,7 +71,7 @@ const Card = ({ item,handleModal,handleAddToCart }) => {
                     onClick={(e) => { e.stopPropagation(); handleCart(item) }}
                         disabled={cartAdded}
                     >
-                            {cartAdded ? 'تمت الإضافة الي السلة' : 'أضف إلى السلة'}
+                            {cartAdded ? 'تمت الإضافة الي الطلبية' : 'أضف إلى الطلبية'}
                             {cartAdded ? <FaCircleCheck/>  : <BsCart3 />}
                 </button>
             </div>
