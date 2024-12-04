@@ -8,6 +8,10 @@ import { LuUserCircle } from 'react-icons/lu'
 import { IoTimeOutline } from 'react-icons/io5'
 import { FormControl, MenuItem, Select } from '@mui/material'
 import { MdClose } from 'react-icons/md'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Autoplay } from 'swiper/modules';
+
 const SideBar = () => {
   const [showModal, setShowModal] = useState(false)
   const [language, setLanguage] = useState('AR');
@@ -17,10 +21,33 @@ const SideBar = () => {
     }
   }
 
+  const data = ['https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
+     'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg', 
+     'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
+    'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
+  'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
+'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
+'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg']
 
 
   return (
     <section className={classes.sidebar}>
+        <div className={classes.slider}>
+        <Swiper
+        spaceBetween={0}
+        slidesPerView={2}
+        loop={true}
+        modules={[Autoplay]}
+        autoplay={{
+            delay: 3000,
+            disableOnInteraction: false
+        }}
+      >
+      {data.map((item, index) =>
+      <SwiperSlide key={index}><img className={classes.image} src={item} alt={index} /></SwiperSlide>
+      )}
+    </Swiper>
+        </div>
         <div className={classes.sidebarContent}>
         <img src={'https://menu-first-template.vercel.app/assets/logo-CLHuY34J.jpg'} style={{border:'5px solid #B57EDC'}} alt="restaurant image" />
         <h3>اسم المطعم</h3>
