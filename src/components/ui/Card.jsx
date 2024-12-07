@@ -64,9 +64,9 @@ const Card = ({ item, handleModal, handleAddToCart,data }) => {
                 </div>
                 <div className={classes.actions} onClick={(e) => e.stopPropagation()}>
                     <div className={classes.count}>
-                        <button onClick={(e) => { e.stopPropagation(); handleIncrement(); }}><FaPlus /></button>
+                        <button style={{color:data?.primary_color ? data?.primary_color : "#B57EDC"}} onClick={(e) => { e.stopPropagation(); handleIncrement(); }}><FaPlus /></button>
                         <p>{count}</p>
-                        <button onClick={(e) => { e.stopPropagation(); handleDecrement(); }}><FaMinus /></button>
+                        <button style={{color:data?.primary_color ? data?.primary_color : "#B57EDC"}} onClick={(e) => { e.stopPropagation(); handleDecrement(); }}><FaMinus /></button>
                     </div>
                     <button
                         className={classes.addtocart}
