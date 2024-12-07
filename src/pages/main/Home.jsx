@@ -146,7 +146,7 @@ const Home = () => {
                 {openExtra && <div className={classes.extrasContent}>
                   {item?.variants?.map((item, index) => (
                     <div className={classes.item} key={index}>
-                      <p>{item?.name}</p>
+                      <p>{item?.[`name_${language}`]}</p>
                       <p>{translate('price',language)} : <span style={{ color: data?.primary_color ? data?.primary_color : "#B57EDC" }}>{item?.price}₪</span></p>
                     </div>
                   ))}
