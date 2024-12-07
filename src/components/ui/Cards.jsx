@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classes from './Cards.module.scss'
 import Card from './Card'
-const Cards = ({data,header,sectionId,handleModal,handleAddToCart}) => {
+const Cards = ({data,header,sectionId,handleModal,handleAddToCart,main}) => {
   return (
     <div className={classes.section} id={sectionId}>
         <div className={classes.sectionHeader}>
@@ -12,6 +12,7 @@ const Cards = ({data,header,sectionId,handleModal,handleAddToCart}) => {
                 <Card key={item?.id} 
                   handleModal={handleModal} 
                   item={item}  
+                  data={main}
                   handleAddToCart={handleAddToCart}  
                   />
             ))}

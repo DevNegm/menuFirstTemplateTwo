@@ -1,68 +1,120 @@
 import React, { useEffect, useState } from 'react'
 import classes from './SideBar.module.scss'
-import { CiClock2, CiShop } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
 import { FaFacebookF, FaInstagram, FaPinterest, FaTiktok, FaYoutube } from 'react-icons/fa'
-import sideEx from '../../assets/sideEx.png'
-import { LuUserCircle } from 'react-icons/lu'
 import { IoTimeOutline } from 'react-icons/io5'
-import { FormControl, MenuItem, Select } from '@mui/material'
 import { MdClose } from 'react-icons/md'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { Autoplay } from 'swiper/modules';
+import { useLanguage } from '../../context/LanguageContext'
+import { useDispatch } from 'react-redux'
+import { getMainData } from '../../store/slices/mainReducer'
+import { FaGlobe } from 'react-icons/fa6'
+import { translate } from '../../utils/translations'
 
 const SideBar = () => {
+  const dispatch = useDispatch()
+  const {language,changeLanguage} = useLanguage()
   const [showModal, setShowModal] = useState(false)
-  const [language, setLanguage] = useState('AR');
+  const [data, setData] = useState(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fade, setFade] = useState(true);
   const handleClose = (e) => {
     if (e.target.classList.contains(classes.modal)) {
       setShowModal(false)
     }
   }
 
-  const data = ['https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
-     'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg', 
-     'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
-    'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
-  'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
-'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg',
-'https://menu-first-template.vercel.app/assets/dish-CM7Bd_Y2.jpeg']
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data?.header_images?.length);
+        setFade(true); 
+      }, 500); 
+    }, 5000);
 
+    return () => clearInterval(interval);
+  }, [data?.header_images]);
+
+
+  useEffect(() => {
+    dispatch(getMainData()).then((res) => {
+      setData(res.payload?.results[0]);
+    });
+  }, []);
+
+  
 
   return (
-    <section className={classes.sidebar}>
+    <section className={classes.sidebar} style={{
+       backgroundImage: `url(${data?.header_images?.[currentImageIndex]?.image})`,
+        backgroundSize: "cover",
+        backgroundColor:'#000',
+        backgroundPosition: "center",
+        filter: fade ? "brightness(1)" : "brightness(0.8)",
+        transition: "filter 0.5s ease-in-out",
+    }}>
         <div className={classes.sidebarContent}>
-        <img src={'https://menu-first-template.vercel.app/assets/logo-CLHuY34J.jpg'} style={{border:'5px solid #B57EDC'}} alt="restaurant image" />
-        <h3>اسم المطعم</h3>
-        <button className={classes.workinghours} onClick={() => {setShowModal(!showModal)}} style={{backgroundColor:'#B57EDC'}}>
-            11:00 - 24:00 <IoTimeOutline />
+        <img src={data?.image ? data?.image : "https://via.placeholder.com/150"} style={{border:`5px solid ${data?.primary_color ? data?.primary_color : "#B57EDC"}`}} alt="restaurant image" />
+        <h3>{data?.[`name_${language}`]}</h3>
+        <button className={classes.workinghours} onClick={() => {setShowModal(!showModal)}} style={{backgroundColor:data?.primary_color ? data?.primary_color : "#B57EDC"}}>
+        {data?.opening_time} - {data?.closing_time} <IoTimeOutline />
         </button>
        
         {
         showModal && <div className={classes.modal} onClick={handleClose}>
-          <div className={classes.modalContent} style={{backgroundColor:'#B57EDC'}}>
+          <div className={classes.modalContent} style={{backgroundColor:data?.primary_color ? data?.primary_color : "#B57EDC"}}>
             <button className={classes.close} onClick={() => setShowModal(false)}><MdClose /></button>
-              <p>الجمعة 11:00 - 24:00 <IoTimeOutline /> </p>
-              <p>السبت 11:00 - 24:00 <IoTimeOutline /> </p>
-              <p>الاحد 11:00 - 24:00 <IoTimeOutline /> </p>
-              <p>الاثنين 11:00 - 24:00 <IoTimeOutline /> </p>
-              <p>الثلاثاء  11:00 - 24:00 <IoTimeOutline /> </p>
-              <p>الاربعاء 11:00 - 24:00 <IoTimeOutline /> </p>
-              <p>الخميس 11:00 - 24:00 <IoTimeOutline /> </p>
+            <p>
+                {translate("friday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time}
+                <IoTimeOutline />
+              </p>
+              <p>
+              {translate("saturday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time}
+                <IoTimeOutline />
+              </p>
+              <p>
+              {translate("sunday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time} <IoTimeOutline />{" "}
+              </p>
+              <p>
+              {translate("monday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time} <IoTimeOutline />{" "}
+              </p>
+              <p>
+              {translate("tuesday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time} <IoTimeOutline />{" "}
+              </p>
+              <p>
+              {translate("wednesday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time} <IoTimeOutline />{" "}
+              </p>
+              <p>
+              {translate("thursday", language)} {' '}
+                {data?.opening_time} - {data?.closing_time} <IoTimeOutline />{" "}
+              </p>
           </div>
         </div>
       }
       <div className={classes.language}>
-          <button>العربية</button>
-          <button>עברית</button>
+          <button style={{backgroundColor:language == 'ar' && data?.primary_color ? data?.primary_color : ""}} onClick={() => changeLanguage('ar')}>العربية</button>
+          <button style={{backgroundColor:language == 'he' && data?.primary_color ? data?.primary_color : ""}} onClick={() => changeLanguage('he')}>עברית</button>
         </div>
         <div className={classes.social}>
-            <Link to="/"><FaFacebookF /></Link>
-            <Link to="/"><FaYoutube /></Link>
-            <Link to="/"><FaTiktok /></Link>
-            <Link to="/"><FaPinterest /></Link>
-            <Link to="/"><FaInstagram /></Link>
+            {data?.social_media_links?.map((item) => (
+                  <Link to={item?.url} key={item?.id} 
+                    onMouseEnter={(e) => (e.target.style.backgroundColor = data?.primary_color ? data?.primary_color : "#B57EDC")}
+                    onMouseLeave={(e) => (e.target.style.backgroundColor = "transparent")}
+                    target='_blank'>
+                    {item?.platform == 'facebook' && <FaFacebookF />}
+                    {item?.platform == 'youtube' && <FaYoutube />}
+                    {item?.platform == 'tiktok' && <FaTiktok />}
+                    {item?.platform == 'pinterest' && <FaPinterest />}
+                    {item?.platform == 'instagram' && <FaInstagram />}
+                    {!item?.platform  && <FaGlobe />}
+                  </Link>
+            ))}
         </div>
       
         </div>

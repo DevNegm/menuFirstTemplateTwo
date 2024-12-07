@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import cardImage from '../../assets/card.png';
 import classes from './Card.module.scss';
-import { useNavigate } from 'react-router-dom';
 import { FaCircleCheck, FaMinus, FaPlus } from 'react-icons/fa6';
 import { BsCart3 } from 'react-icons/bs';
 import { Fade } from 'react-awesome-reveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { translate } from '../../utils/translations';
 
 
-const Card = ({ item, handleModal, handleAddToCart }) => {
+const Card = ({ item, handleModal, handleAddToCart,data }) => {
     const [count, setCount] = useState(1);
     const handleIncrement = () => setCount((prevCount) => prevCount + 1);
     const handleDecrement = () => setCount((prevCount) => Math.max(prevCount - 1, 1));
     const [cartAdded, setCartAdded] = useState(false)
-
+    const {language} = useLanguage()
     const handleCart = (item) => {
         setCartAdded(true)
         setCount(1)
         handleAddToCart({
             id: item.id,
-            name: item.name,
-            description: item.description,
+            name_ar: item.name_ar,
+            name_he: item.name_he,
+            description_ar: item.description_ar,
+            description_he: item.description_he,
             variants: item.variants,
-
             price: item.price,
             count: count,
             image: item.image
@@ -39,25 +41,24 @@ const Card = ({ item, handleModal, handleAddToCart }) => {
         <Fade cascade damping={0.1}>
             <div className={classes.card} key={item?.id} onClick={() => handleModal(item)}>
                 <div className={classes.content}>
-                    <img src={item?.image || cardImage} alt="card" />
+                    <img src={item?.image ? item?.image : cardImage} alt="card" />
                     <div className={classes.left}>
                         <div>
                             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                                <h4>{item?.name}</h4>
+                                <h4>{item?.[`name_${language}`]}</h4>
                                 <div className={classes.tags}>
                                     {item?.types && item?.types?.map((item, i) => (
                                         <div key={i} className={classes.tag}>
-                                            <span title={item?.name}>{item?.icon}</span>
+                                            <span title={item?.[`name_${language}`]}>{item?.icon}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            <p>{item?.description && item?.description.slice(0, 100)} {item?.description?.length > 100 && '...'}</p>
+                            <p>{item?.[`description_${language}`] && item?.[`description_${language}`]?.slice(0, 100)} {item?.[`description_${language}`]?.length > 100 && '...'}</p>
                         </div>
                         <div>
-
-                            <h3> السعر <span>{item?.price}</span> ₪</h3>
+                            <h3 style={{color:data?.primary_color ? data?.primary_color : "#B57EDC"}}> {translate('price',language)} <span>{item?.price}</span> ₪</h3>
                         </div>
                     </div>
                 </div>
@@ -72,7 +73,9 @@ const Card = ({ item, handleModal, handleAddToCart }) => {
                         onClick={(e) => { e.stopPropagation(); handleCart(item) }}
                         disabled={cartAdded}
                     >
-                        {cartAdded ? 'تمت الإضافة الي الطلبية' : 'أضف إلى الطلبية'}
+                        <span>
+                            {cartAdded ? translate('added',language) : translate('addToCart',language)}
+                        </span>
                         {cartAdded ? <FaCircleCheck /> : <BsCart3 />}
                     </button>
                 </div>
