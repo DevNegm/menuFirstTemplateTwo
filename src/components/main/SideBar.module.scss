@@ -13,9 +13,7 @@
     color: var(--whiteColor);
     overflow-y: auto;
     z-index: 1000;
-    .slider {
-        display: none;
-    }
+ 
     .sideHeader {
         display: flex;
         flex-direction: column;
@@ -204,11 +202,8 @@
 @media screen and (max-width:64rem) {
     .sidebar {
         width: 100%;
-        padding: 0;
-
         display: flex;
         gap: 1rem;
-        padding: 0;
         position: relative;
         min-height: fit-content;
         background-image: url('../../assets/sidebar.png');

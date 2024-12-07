@@ -32,22 +32,6 @@ const SideBar = () => {
 
   return (
     <section className={classes.sidebar}>
-        <div className={classes.slider}>
-        <Swiper
-        spaceBetween={0}
-        slidesPerView={2}
-        loop={true}
-        modules={[Autoplay]}
-        autoplay={{
-            delay: 3000,
-            disableOnInteraction: false
-        }}
-      >
-      {data.map((item, index) =>
-      <SwiperSlide key={index}><img className={classes.image} src={item} alt={index} /></SwiperSlide>
-      )}
-    </Swiper>
-        </div>
         <div className={classes.sidebarContent}>
         <img src={'https://menu-first-template.vercel.app/assets/logo-CLHuY34J.jpg'} style={{border:'5px solid #B57EDC'}} alt="restaurant image" />
         <h3>اسم المطعم</h3>
